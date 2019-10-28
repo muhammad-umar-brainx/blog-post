@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Route::get('/blog', 'BlogPostController@index');
 Route::post('/blog', 'BlogPostController@createBlog');
+Route::post('/blog/edit', 'BlogPostController@editBlog');
+Route::post('/blog/delete', 'BlogPostController@deleteBlog');
+Route::get('/blog/{name}', 'BlogPostController@blogDesc');
 
 Route::get('/calculator', 'PracticeController@calculatorForm');
 Route::post('/calculator', 'PracticeController@calculator');

@@ -1,5 +1,5 @@
-@extends('blog_post_master')
+@extends('blog_header')
 
-@section('content')
+@section('content2')
 
-@endsection
+    @endsection

@@ -36,4 +36,4 @@ function loadData(url) {
     xhttp.open(requestType, url, true);
     xhttp.send();
 }
-init();
+// init();
