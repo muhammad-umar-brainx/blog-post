@@ -9,7 +9,7 @@ class PracticeController extends Controller
 
     public function calculatorForm()
     {
-        return view('calculatormaster');
+        return view('calculator');
     }
     public function calculateResult(Request $request){
         $result = 0;
@@ -44,12 +44,15 @@ class PracticeController extends Controller
         return $this->myResultCompact($request, $result);
     }
 
+    public function calculatorAjax(Request $request){
+        $result = $this->calculateResult($request);
+//        return $this->myResultCompact($request, $result);
+        return json_encode($this->myResultCompact($request, $result));
+    }
+
     public function calculator(Request $request)
     {
-
         $result = $this->calculateResult($request);
-
-
         return view('calculatormaster', $this->myResultCompact($request, $result));
     }
 

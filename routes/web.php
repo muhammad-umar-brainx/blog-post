@@ -11,10 +11,18 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/blog', 'BlogPostController@index');
+Route::post('/blog', 'BlogPostController@createBlog');
 
 Route::get('/calculator', 'PracticeController@calculatorForm');
 Route::post('/calculator', 'PracticeController@calculator');
+Route::post('/calculator/ajax', 'PracticeController@calculatorAjax');
 Route::post('/calculator/api', 'PracticeController@calculatorApi');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

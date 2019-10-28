@@ -3,14 +3,18 @@ let requestType = "GET";
 let operator;
 
 $(document).ready(function(){
-    $("submitBtn").click(function(){
-        $.get("demo_test_post.asp",
+    $("#submitBtn").click(function(){
+        console.log($('#operator').val());
+        $.post("http://127.0.0.1:8000/calculator/ajax",
             {
-                name: "Donald Duck",
-                city: "Duckburg"
+                firstNumber: $('#firstNumber').val(),
+                secondNumber: $('#secondNumber').val(),
+                operator: $('#operator').val(),
+                _token: $('input[name ="_token"]').val(),
             },
             function(data,status){
-                alert("Data: " + data + "\nStatus: " + status);
+                $('#resultLabel').text("Answer : " + JSON.parse(data).result);
+                // alert("Data: " + data + "\nStatus: " + status);
             });
     });
 });
