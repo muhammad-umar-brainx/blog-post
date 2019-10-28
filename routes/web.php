@@ -16,10 +16,12 @@ Route::get('/', function () {
 });
 
 Route::get('/blog', 'BlogPostController@index');
+Route::get('/blog/{name}', 'BlogPostController@blogDesc');
 Route::post('/blog', 'BlogPostController@createBlog');
 Route::post('/blog/edit', 'BlogPostController@editBlog');
 Route::post('/blog/delete', 'BlogPostController@deleteBlog');
-Route::get('/blog/{name}', 'BlogPostController@blogDesc');
+
+Route::post('/store-post', 'BlogPostController@createPost');
 
 Route::get('/calculator', 'PracticeController@calculatorForm');
 Route::post('/calculator', 'PracticeController@calculator');

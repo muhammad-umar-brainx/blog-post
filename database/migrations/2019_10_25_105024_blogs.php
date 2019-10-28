@@ -13,10 +13,10 @@ class Blogs extends Migration
      */
     public function up()
     {
-        Schema::create('blogs', function (Blueprint $table){
+        Schema::create('blogs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-                $table->string('creator');
+            $table->string('creator');
             $table->timestamps();
 //            $table->integer('post_id')->unsigned();
 

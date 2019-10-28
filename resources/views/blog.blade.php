@@ -1,15 +1,12 @@
-@extends('blog_header')
-
-@section('content2')
+@extends('blog_post_master')
+@section('content')
 
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-{{--                <h4>Bootstrap Snipp for Datatable</h4>--}}
                 <div class="table-responsive">
                     <table id="mytable" class="table table-bordred table-striped">
                         <thead>
-                        {{--                        <th><input type="checkbox" id="checkall"/></th>--}}
                         <th>Blog Id</th>
                         <th>Blog Name</th>
                         <th>Creator</th>
@@ -106,13 +103,16 @@
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <input class="form-control " type="text" placeholder="" id="e_blog_id"  name="e_blog_id" readonly="readonly">
+                            <input class="form-control " type="text" placeholder="" id="e_blog_id" name="e_blog_id"
+                                   readonly="readonly">
                         </div>
                         <div class="form-group">
-                            <input class="form-control " type="text" placeholder="" id="e_blog_name" name="e_blog_name" readonly="readonly" >
+                            <input class="form-control " type="text" placeholder="" id="e_blog_name" name="e_blog_name"
+                                   readonly="readonly">
                         </div>
                         <div class="form-group">
-                            <input class="form-control " type="text" placeholder="" id="e_blog_creator" name="e_blog_creator">
+                            <input class="form-control " type="text" placeholder="" id="e_blog_creator"
+                                   name="e_blog_creator">
                         </div>
 
 

@@ -15,7 +15,8 @@ class Posts extends Migration
     {
         Schema::create('posts', function (Blueprint $table){
             $table->increments('id');
-            $table->dateTime('creation_date');
+            $table->timestamps();
+            $table->text('title');
             $table->longText('content');
             $table->string('author');
             $table->unsignedInteger('blog_id');

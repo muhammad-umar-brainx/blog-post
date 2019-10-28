@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Blog;
@@ -16,26 +17,48 @@ class BlogPostController extends Controller
 
     function deleteBlog(Request $request)
     {
-//        dd($request->all());
-        $blog = Blog::find($request->delete_blog);
-        $blog->delete();
+        $blog = Blog::find($request->delete_blog)->delete();
         return redirect('/blog');
     }
 
     function blogDesc($name)
     {
-        $blog = Blog::where('name', $name);
+        $blogs = Blog::all();
+
+
 //        $count = $blog->count();
-        return view('post', compact('name'));
+        return view('post', compact('name', 'blogs'));
     }
+
+    function createPost(Request $request)
+    {
+//        dd($request->all());
+        $post = new Post();
+
+        $post->content = $request->post_content;
+        $post->title = $request->post_name;
+        $post->author = $request->post_author;
+        $post->blog_id = $request->blog_id;
+
+        $post->save();
+
+        $blog_name = Blog::find($request->blog_id)->name;
+
+        return redirect("blog/$blog_name");
+    }
+
+
+    public function getAllPost($id)
+    {
+//        $posts = Blog::find($id)->posts();
+        $posts = Post::where();
+    }
+
 
     function editBlog(Request $request)
     {
-        $blog = Blog::find($request->e_blog_id);
 
-        $blog->creator = $request->e_blog_creator;
-
-        $blog->save();
+        Blog::where('id',$request->e_blog_id)->update(['creator' => $request->e_blog_creator]);
 
         return redirect('/blog');
     }
@@ -57,7 +80,7 @@ class BlogPostController extends Controller
             $keyError = true;
         }
         finally{
-            return view('blog', compact('name', 'keyError', 'blogs'));
+            return redirect('/blog');
         }
     }
 }

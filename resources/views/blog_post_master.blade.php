@@ -27,10 +27,8 @@
     <p> Hy I am master </p>
 </div>
 
-
+@include('blog_header')
 @yield('content')
-@yield('content2')
-
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
