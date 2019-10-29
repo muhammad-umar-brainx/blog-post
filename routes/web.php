@@ -12,16 +12,23 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/blog');
 });
 
+
 Route::get('/blog', 'BlogPostController@index');
-Route::get('/blog/{name}', 'BlogPostController@blogDesc');
+
+
+
 Route::post('/blog', 'BlogPostController@createBlog');
 Route::post('/blog/edit', 'BlogPostController@editBlog');
 Route::post('/blog/delete', 'BlogPostController@deleteBlog');
 
-Route::post('/store-post', 'BlogPostController@createPost');
+Route::get('/blog/{name}', 'PostController@getPost')->name('allPost');
+Route::post('/store-post', 'PostController@createPost');
+Route::post('/edit-post', 'PostController@editPost');
+Route::post('/delete-post', 'PostController@deletePost');
+
 
 Route::get('/calculator', 'PracticeController@calculatorForm');
 Route::post('/calculator', 'PracticeController@calculator');

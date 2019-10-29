@@ -18,6 +18,7 @@ class BlogPostController extends Controller
     function deleteBlog(Request $request)
     {
         $blog = Blog::find($request->delete_blog)->delete();
+        $post = Post::where('blog_id', $request->delete_blog)->delete();
         return redirect('/blog');
     }
 
@@ -28,23 +29,6 @@ class BlogPostController extends Controller
 
 //        $count = $blog->count();
         return view('post', compact('name', 'blogs'));
-    }
-
-    function createPost(Request $request)
-    {
-//        dd($request->all());
-        $post = new Post();
-
-        $post->content = $request->post_content;
-        $post->title = $request->post_name;
-        $post->author = $request->post_author;
-        $post->blog_id = $request->blog_id;
-
-        $post->save();
-
-        $blog_name = Blog::find($request->blog_id)->name;
-
-        return redirect("blog/$blog_name");
     }
 
 
@@ -58,7 +42,7 @@ class BlogPostController extends Controller
     function editBlog(Request $request)
     {
 
-        Blog::where('id',$request->e_blog_id)->update(['creator' => $request->e_blog_creator]);
+        Blog::where('id', $request->e_blog_id)->update(['creator' => $request->e_blog_creator]);
 
         return redirect('/blog');
     }
@@ -69,17 +53,15 @@ class BlogPostController extends Controller
         $keyError = false;
         $name = $request->name;
         $blogs = Blog::all();
-        try{
+        try {
             $blog = new Blog;
             $blog->name = $request->name;
             $blog->creator = $request->creator;
 //        $blog->created_at = Carbon::now()->timestamp;
             $blog->save();
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             $keyError = true;
-        }
-        finally{
+        } finally {
             return redirect('/blog');
         }
     }

@@ -6,7 +6,7 @@
         <ul class="nav navbar-nav">
 
             @if(isset($name))
-                <li class="active"><a href="#">{{$name}}</a></li>
+                <li class="active"><a href="/blog">{{$name}}</a></li>
             @else
                 <li class="active"><a href="#">Home</a></li>
             @endif
