@@ -43,14 +43,14 @@
                     <form action="{{ action("PostController@editPost") }}" method="POST"
                           class="was-validated">
                         {{ csrf_field() }}
-                        <input type="hidden" name="postId" id="postId"></input>
+                        <input type="hidden" name="id" id="postId"></input>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Title:</label>
-                            <input type="text" class="form-control" id="post_title" name="postTitle">
+                            <input type="text" class="form-control" id="post_title" name="title">
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Content:</label>
-                            <textarea class="form-control" id="post_content" name="postContent"></textarea>
+                            <textarea class="form-control" id="post_content" name="post_content"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -62,6 +62,15 @@
         </div>
     </div>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <script>
         $(function () {
@@ -82,18 +91,17 @@
                         $.post('/delete-post',
                             {
                                 '_token': '{{csrf_token()}}',
-                                postId: post_id,
+                                id: post_id,
                             },
                             function (data, status) {
                                 // alert("Data: " + data + "\nStatus: " + status);
                                 Swal.fire(
                                     'Deleted!',
-                                    'Your file has been deleted.',
+                                    'Your post has been deleted.',
                                     'success'
                                 );
-
+                                // alert("Data "+data + " status : " +status);
                                 $(`#delete_${data}`).parent().remove();
-
                             }
                         );
 
@@ -106,7 +114,6 @@
                 let id = $(this).attr('id');
                 id = id.replace("edit_", "");
                 $('#postId').val(id);
-
             });
         });
 

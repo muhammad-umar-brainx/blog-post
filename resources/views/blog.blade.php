@@ -56,7 +56,7 @@
                    name="name">
         </div>
         <div class="form-group d-block">
-            <label for="creator">Enter your name : </label>
+            <label for="creator">Enter author name : </label>
             <input type="text" class="form-control" id="creator" placeholder="Enter your name"
                    name="creator">
         </div>
@@ -64,17 +64,8 @@
     </form>
 
 
-    @if( isset($keyError) and $keyError == true )
-        {{--        {{}}--}}
-        <script>
-            Swal.fire({
-                type: 'error',
-                title: 'Oops...',
-                text: 'Blog {{$name}} already exist',
-                // footer: '<a href>Why do I have this issue?</a>'
-            })
-        </script>
-    @elseif( isset($keyError) and $keyError == false )
+
+   @if( isset($keyError) and $keyError == false )
         <script>
             Swal.fire({
                 type: 'success',
@@ -85,6 +76,16 @@
         </script>
     @endif
 
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'Your request not accepted',
+                // footer: '<a href>Why do I have this issue?</a>'
+            })
+        </script>
+    @endif
 
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
         <div class="modal-dialog">

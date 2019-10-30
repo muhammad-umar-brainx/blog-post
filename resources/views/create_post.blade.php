@@ -2,6 +2,7 @@
         <form action="/store-post" method="POST"
           class="was-validated text-center">
         {{ csrf_field() }}
+            <input name="blog_name" value="{{$name}}" type="hidden">
         <div class="form-group">
             <input type="text" class="form-control" id="name" placeholder="Post title"
                    name="post_name" required>
